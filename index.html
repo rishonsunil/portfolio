@@ -1,142 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rishon Sunil – Portfolio</title>
+
+  <!-- Single-file CSS (if your teacher insists on external CSS for Q2, paste this into styles.css and link it) -->
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f4f9;
-      color: #333;
+    :root{
+      --bg:#f4f4f9; --ink:#222; --muted:#555; --card:#fff;
+      --brand:#2563eb; --brand-2:#0ea5e9; --dark:#1f2937;
     }
-    header {
-      background: #333;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
+    *{box-sizing:border-box}
+    body{margin:0;font:16px/1.6 system-ui,Segoe UI,Roboto,Arial,sans-serif;color:#333;background:var(--bg)}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{opacity:.85}
+    header{
+      background:linear-gradient(90deg,var(--dark),#111);
+      color:#fff;padding:2.2rem 1rem;text-align:center
     }
-    header h1 { margin: 0; }
-    nav ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      background: #444;
-      margin: 0;
+    header h1{margin:0 0 .4rem;font-size:clamp(1.4rem,3.2vw,2.2rem)}
+    header p{margin:0;color:#cbd5e1}
+    nav{background:#111;position:sticky;top:0;z-index:20;border-bottom:1px solid #222}
+    nav ul{margin:0;padding:.5rem;list-style:none;display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+    nav a{color:#fff;padding:.55rem .9rem;border-radius:999px;transition:transform .15s ease, background .2s ease}
+    nav a:hover{background:#1f2937;transform:translateY(-1px)}
+    nav a.active{background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+    main{max-width:1000px;margin:auto;padding:1.5rem}
+    .section{margin:1.6rem 0}
+    .card{
+      background:var(--card);padding:1.1rem;border-radius:12px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);border:1px solid #eee
     }
-    nav ul li { margin: 0 10px; }
-    nav ul a {
-      color: #fff;
-      text-decoration: none;
-      padding: 8px 12px;
-      display: block;
+    .grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .tag{display:inline-block;background:#eef2ff;color:#1e40af;padding:.25rem .55rem;border-radius:6px;margin:.25rem .25rem 0 0}
+    footer{background:#0b0f17;color:#9ca3af;text-align:center;padding:2rem;margin-top:2rem}
+    h2{margin:.2rem 0 1rem;color:#222}
+    /* Forms */
+    input,select,textarea,button{
+      width:100%;padding:.7rem .8rem;border:1px solid #ddd;border-radius:10px;font:inherit;background:#fff;color:inherit;outline:none
     }
-    nav ul a:hover { background: #666; border-radius: 5px; }
-    section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    h2 { color: #222; }
-    .card {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .skills span, .projects a {
-      display: inline-block;
-      background: #eee;
-      padding: 5px 10px;
-      margin: 5px;
-      border-radius: 5px;
-    }
-    footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
+    input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 4px rgba(37,99,235,.15)}
+    label{font-weight:600;color:var(--ink)}
+    .form-row{display:grid;gap:.8rem;margin:.8rem 0}
+    .form-2{grid-template-columns:1fr 1fr}
+    button{cursor:pointer;border:none;background:linear-gradient(90deg,var(--brand),var(--brand-2));color:#fff;font-weight:700;letter-spacing:.2px}
+    /* Gallery */
+    .gallery{columns:1;column-gap:1rem}
+    @media (min-width:640px){.gallery{columns:2}}
+    @media (min-width:980px){.gallery{columns:3}}
+    .gallery img{width:100%;border-radius:12px;margin:0 0 1rem;display:block;break-inside:avoid;box-shadow:0 8px 18px rgba(0,0,0,.08)}
+    .map{border:0;width:100%;height:360px;border-radius:12px}
+    /* Utility */
+    .muted{color:#555}
   </style>
 </head>
 <body>
-  <header>
+  <!-- HERO -->
+  <header id="home">
     <h1>Rishon Sunil</h1>
     <p>Final Year B.Tech CSE Student | Web Developer | AI Enthusiast</p>
   </header>
 
+  <!-- NAV -->
   <nav>
     <ul>
-      <li><a href="#about">About</a></li>
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#about">About Me</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#gallery">MyGallery</a></li>
+      <li><a href="#signup">Signup</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-      <p>Passionate and driven final-year B.Tech Computer Science student with a strong foundation in software technology and an exceptional academic record. Experienced in building scalable applications with real-world utility and user-focused design. Seeking opportunities to apply my skills in software development, database systems, and AI-powered solutions.</p>
-    </div>
-  </section>
+  <main>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="card skills">
-      <span>Angular</span>
-      <span>JavaScript</span>
-      <span>HTML & CSS</span>
-      <span>Python</span>
-      <span>Java</span>
-      <span>C</span>
-      <span>MongoDB</span>
-      <span>SQL</span>
-      <span>Google Cloud Platform</span>
-      <span>Twilio</span>
-      <span>GitHub</span>
-    </div>
-  </section>
+    <!-- ABOUT (merged from your file) -->
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <div class="card">
+        <p>
+          Passionate and driven final-year B.Tech Computer Science student with a strong foundation in software
+          technology and an exceptional academic record. Seeking opportunities to apply my skills in software
+          development, database systems, and AI-powered solutions.
+        </p>
+      </div>
+    </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="card">
-      <h3>SafePass – Hostel Leave Management</h3>
-      <p>Web-based system with role-based access for students, faculty, and wardens. Includes real-time requests, approvals, and Twilio SMS alerts. Improved communication and accountability.</p>
+    <!-- SKILLS (merged from your file) -->
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="card">
+        <span class="tag">Angular</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">HTML &amp; CSS</span>
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">C</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Google Cloud Platform</span>
+        <span class="tag">Twilio</span>
+        <span class="tag">GitHub</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS (merged from your file, expanded) -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="card">
+        <h3>SafePass – Hostel Leave Management</h3>
+        <p>
+          Web-based system with role-based access for students, faculty, and wardens. Includes real-time
+          requests, approvals, and Twilio SMS alerts. Improved communication and accountability.
+        </p>
+        <p class="muted">Stacks used: HTML/CSS/JS, Node, MongoDB, Twilio API</p>
+      </div>
       
-    </div>
-  
-  </section>
+    </section>
 
-  <section id="education">
-    <h2>Education</h2>
-    <div class="card">
-      <h4>B.Tech in Computer Science and Engineering (2022 – 2026)</h4>
-      <p>St. Joseph’s College of Engineering and Technology, Palai</p>
-      <h4>Higher Secondary (2020 – 2022)</h4>
-      <p>St. Ephrem’s HSS, Mannanam</p>
-      <h4>High School (2020)</h4>
-      <p>Sacred Heart CMI Public School</p>
-    </div>
-  </section>
+    <!-- EDUCATION (merged from your file) -->
+    <section id="education" class="section">
+      <h2>Education</h2>
+      <div class="card">
+        <h4>B.Tech in Computer Science and Engineering (2022 – 2026)</h4>
+        <p>St. Joseph’s College of Engineering and Technology, Palai</p>
+        <h4>Higher Secondary (2020 – 2022)</h4>
+        <p>St. Ephrem’s HSS, Mannanam</p>
+        <h4>High School (2020)</h4>
+        <p>Sacred Heart CMI Public School</p>
+      </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="card">
-      <p>Email: <a href="mailto:rishonsunil02@gmail.com">rishonsunil02@gmail.com</a></p>
-      <p>Mobile: 9497353416</p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/rishonsunil">linkedin.com/in/rishonsunil</a></p>
-      <p>GitHub: <a href="https://github.com/rishonsunil">github.com/rishonsunil</a></p>
-    </div>
-  </section>
+    <!-- GALLERY (new requirement) -->
+    <section id="gallery" class="section">
+      <h2>MyGallery</h2>
+      <div class="card">
+        <div class="gallery">
+          <!-- Replace with your images when ready -->
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkErmqtQvsuxW-oY5QuFnt1dnR6EG9d9QRxw&s" alt="SJCET">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB0LFLCSfRb-4W8jTvCj-gKAx7tjOYT4IG7A&s" alt="Logo">
+          <img src="https://images.unsplash.com/photo-1529101091764-c3526daf38fe?w=1200" alt="Desk setup">
 
-  <footer>
-    <p>© 2025 Rishon Sunil. Built with HTML & CSS.</p>
-  </footer>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIGNUP (15+ fields; no validation required) -->
+    <section id="signup" class="section">
+      <h2>Signup</h2>
+      <div class="card">
+        <p class="muted">Form validations are not required as per the assignment.</p>
+        <form>
+          <div class="form-row form-2">
+            <div><label for="fname">First Name</label><input id="fname" type="text"></div>
+            <div><label for="lname">Last Name</label><input id="lname" type="text"></div>
+          </div>
+
+          <div class="form-row form-2">
+            <div><label for="uname">Username</label><input id="uname" type="text"></div>
+            <div><label for="email">Email</label><input id="email" type="email"></div>
+          </div>
+
+          <div class="form-row form-2">
+            <div><label for="pwd">Password</label><input id="pwd" type="password"></div>
+            <div><label for="cpwd">Confirm Password</label><input id="cpwd" type="password"></div>
+          </div>
+
+          <div class="form-row form-2">
+            <div><label for="phone">Phone</label><input id="phone" type="tel"></div>
+            <div><label for="dob">Date of Birth</label><input id="dob" type="date"></div>
+          </div>
+
+          <div class="form-row form-2">
+            <div>
+              <label for="gender">Gender</label>
+              <select id="gender">
+                <option value="">Select…</option><option>Male</option><option>Female</option><option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="country">Country</label>
+              <select id="country">
+                <option value="">Select…</option><option>India</option><option>USA</option><option>UK</option><option>Canada</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row form-2">
+            <div><label for="addr1">Address Line 1</label><input id="addr1" type="text"></div>
+            <div><label for="addr2">Address Line 2</label><input id="addr2" type="text"></div>
+          </div>
+
+          <div class="form-row form-2">
+            <div><label for="city">City</label><input id="city" type="text"></div>
+            <div><label for="state">State</label><input id="state" type="text"></div>
+          </div>
+
+          <div class="form-row form-2">
+            <div><label for="pin">PIN/ZIP</label><input id="pin" type="text"></div>
+            <div><label for="photo">Profile Photo</label><input id="photo" type="file" accept="image/*"></div>
+          </div>
+
+          <div class="form-row">
+            <fieldset class="card" style="padding:1rem">
+              <legend><strong>Skills / Interests</strong></legend>
+              <label><input type="checkbox" value="web"> Web Dev</label>
+              <label><input type="checkbox" value="ai"> AI/ML</label>
+              <label><input type="checkbox" value="db"> Databases</label>
+              <label><input type="checkbox" value="cloud"> Cloud</label>
+            </fieldset>
+          </div>
+
+          <div class="form-row">
+            <label for="bio">Short Bio</label>
+            <textarea id="bio" rows="4" placeholder="Tell us a little about yourself…"></textarea>
+          </div>
+
+          <div class="form-row">
+            <button type="submit">Create Account</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- CONTACT (merged + map + form) -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Contact Form</h3>
+          <form>
+            <div class="form-row form-2">
+              <div><label for="cname">Your Name</label><input id="cname" type="text"></div>
+              <div><label for="cemail">Email</label><input id="cemail" type="email"></div>
+            </div>
+            <div class="form-row"><label for="cmsg">Message</label><textarea id="cmsg" rows="5"></textarea></div>
+            <div class="form-row"><button type="submit">Send Message</button></div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Find Me</h3>
+          
+          <p><strong>Email:</strong> <a href="mailto:rishonsunil02@gmail.com">rishonsunil02@gmail.com</a><br>
+             <strong>Mobile:</strong> 9497353416<br>
+             <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/rishonsunil" target="_blank" rel="noopener">linkedin.com/in/rishonsunil</a><br>
+             <strong>GitHub:</strong> <a href="https://github.com/rishonsunil" target="_blank" rel="noopener">github.com/rishonsunil</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>© 2025 Rishon Sunil</p></footer>
 </body>
 </html>
